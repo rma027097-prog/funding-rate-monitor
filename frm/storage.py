@@ -62,8 +62,11 @@ CREATE TABLE IF NOT EXISTS funding_history (
 def connect(db_path: str | Path):
     """開啟資料庫連線；離開 with 區塊時自動 commit 並關閉。"""
     Path(db_path).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(str(db_path))
+    # timeout=30：別的程式（例如 backfill）正在寫入時，最多等 30 秒而不是直接報錯
+    conn = sqlite3.connect(str(db_path), timeout=30)
     try:
+        # WAL 模式：讀和寫可以同時進行（網頁讀取時，收集器還能繼續寫）
+        conn.execute("PRAGMA journal_mode=WAL")
         conn.executescript(SCHEMA)
         yield conn
         conn.commit()
