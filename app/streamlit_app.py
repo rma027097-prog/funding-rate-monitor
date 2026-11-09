@@ -148,8 +148,9 @@ with tab_stats:
                           "MAE_AR1_bp", "MAE_naive_bp", "回測年化", "交易次數"]]
                      .sort_values("平均年化", key=abs, ascending=False), width="stretch", hide_index=True)
         allx = pd.concat(series.values()) * 1e4
-        st.plotly_chart(px.histogram(allx.clip(-10, 10), nbins=80, title="所有配對 8h 價差分佈 (bp, 截斷 ±10)"),
-                        width="stretch")
+        fig = px.histogram(allx.clip(-10, 10), nbins=80, title="所有配對 8h 價差分佈 (bp, 截斷 ±10)")
+        fig.update_layout(showlegend=False, xaxis_title="8h 價差 (bp)", yaxis_title="次數")
+        st.plotly_chart(fig, width="stretch")
         st.plotly_chart(px.scatter(sdf.assign(mean_apr_pct=sdf.mean_apr * 100), x="autocorr1", y="mean_apr_pct",
                                    color="base", hover_name="pair",
                                    title="持續性（lag-1 自相關） vs 價差大小（年化 %）"), width="stretch")
