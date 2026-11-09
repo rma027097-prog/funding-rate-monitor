@@ -9,7 +9,7 @@
 > historical funding data to answer one question: **do funding-rate spreads persist long enough to pay for trading costs?**
 > Includes a 5-tab Streamlit dashboard, pytest suite, GitHub Actions CI and an optional scheduled collector. No API keys, no trading.
 
-**作者**：馬瑞隆｜**開發協助**：AI coding agent（見下方〈誠實聲明〉）
+**作者**：馬瑞隆｜使用 AI 工具輔助開發
 
 ---
 
@@ -151,9 +151,8 @@ docs/               截圖、圖表、分析報告、實測結果
 
 **我自己（原創）的部分**：SQLite 歷史資料層與排程收集、台灣交易所（MAX / BitoPro）整合與台灣溢價、資料品質檢查、整個統計分析模組（ADF、AR(1) 半衰期、樣本外預測、成本感知回測）、Streamlit 儀表板、測試與 CI。
 
-## 誠實聲明
+## 聲明
 
-- 本專案在 AI coding agent 協助下完成。我負責選題、方向與驗收，並透過 [LEARN.md](LEARN.md) 逐檔學習程式邏輯；每條公式都有手算驗證的測試。
 - **唯讀系統**：不下單、不需要 API Key、不碰任何資金。所有數字僅供研究，**不是投資建議**。
 
 ## Roadmap 未來方向
