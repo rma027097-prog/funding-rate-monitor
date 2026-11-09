@@ -167,4 +167,3 @@ tests/               自動化測試
 - `collect.yml`：每 6 小時在 GitHub 雲端抓一次資料，資料庫存到 `data` 分支（強制覆蓋成單一 commit，避免 repo 越來越大）。
 
 ---
-
