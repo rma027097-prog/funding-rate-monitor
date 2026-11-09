@@ -149,7 +149,7 @@ docs/               截圖、圖表、分析報告、實測結果
 
 完整授權文字見 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-**我自己（原創）的部分**：SQLite 歷史資料層與排程收集、台灣交易所（MAX / BitoPro）整合與台灣溢價、資料品質檢查、整個統計分析模組（ADF、AR(1) 半衰期、樣本外預測、成本感知回測）、Streamlit 儀表板、測試與 CI。
+**本專案原創的部分**（非取自開源專案）：SQLite 歷史資料層與排程收集、台灣交易所（MAX / BitoPro）整合與台灣溢價、資料品質檢查、整個統計分析模組（ADF、AR(1) 半衰期、樣本外預測、成本感知回測）、Streamlit 儀表板、測試與 CI。
 
 ## 聲明
 
