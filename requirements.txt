@@ -1,0 +1,10 @@
+ccxt>=4.4
+pandas>=2.2
+numpy>=1.26
+pyyaml>=6.0
+requests>=2.31
+statsmodels>=0.14
+scipy>=1.11
+matplotlib>=3.8
+plotly>=5.20
+streamlit>=1.35

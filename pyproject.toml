@@ -1,0 +1,10 @@
+[project]
+name = "funding-rate-monitor"
+version = "0.1.0"
+description = "Read-only crypto funding-rate & cross-exchange spread monitor with statistical analysis and dashboard"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

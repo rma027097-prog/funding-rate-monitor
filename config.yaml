@@ -1,0 +1,54 @@
+# ============================================================
+# Funding-Rate Monitor 設定檔 (config.yaml)
+# 改這個檔就能調整行為，不需要改程式碼。
+# ============================================================
+
+# SQLite 資料庫路徑（相對於專案根目錄）
+database: data/monitor.db
+
+# 收集器每幾分鐘跑一次（loop 模式才用得到）
+interval_minutes: 5
+
+# 永續合約交易所（ccxt 的 exchange id）
+# 注意：Binance / Bybit 在部分地區（含本專案開發用的雲端機器、GitHub Actions 美國機房）會回傳地區限制錯誤，所以預設不啟用。
+perp_exchanges:
+  - okx
+  - hyperliquid
+  - gate
+  - bitget
+
+# 只追蹤這些幣（留空 [] 代表「所有在 >=2 家交易所都有、且成交量夠大的幣」）
+watchlist: []
+
+# 24 小時成交額（USD）低於這個門檻的市場會被忽略，避免流動性太差的假機會
+min_quote_volume_usd: 5000000
+
+# 一次 snapshot 最多存幾個幣（依成交量排序），控制資料庫大小
+max_assets: 60
+
+# 兩家交易所中價相差超過這個比例，就標記為「可疑」（很可能是不同標的、或盤前/股票類合約定義不同），不列入排行
+max_price_deviation: 0.02
+
+# 預設持有天數：用來把「一次性開平倉成本」攤提成年化
+holding_days: 7
+
+# 各交易所手續費（小數，0.0005 = 0.05%）— 一般用戶 / VIP0 公開費率。
+# 數字來源見 README「手續費來源」，實際費率依帳戶等級可能不同，請自行覆寫。
+fees:
+  okx:         {maker: 0.0002,  taker: 0.0005}
+  hyperliquid: {maker: 0.00015, taker: 0.00045}
+  gate:        {maker: 0.0002,  taker: 0.0005}
+  bitget:      {maker: 0.0002,  taker: 0.0006}
+  max:         {maker: 0.0008,  taker: 0.0016}   # 台灣 MAX 現貨（VIP0 參考值）
+  bitopro:     {maker: 0.001,   taker: 0.002}    # 台灣 BitoPro 現貨（VIP0 參考值）
+  default:     {maker: 0.0002,  taker: 0.0006}   # 未列出時用的保守值
+
+# 若交易所沒回報資金費率結算週期，用這裡的預設值（小時）
+default_funding_interval_hours:
+  hyperliquid: 1
+  default: 8
+
+# 台灣現貨交易所（台幣市場），用來觀察 MAX vs BitoPro 價差、以及「台灣溢價」
+tw_spot:
+  enabled: true
+  markets: [usdt, btc, eth]   # 會轉成 usdttwd / btc_twd 等格式
